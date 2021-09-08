@@ -1,0 +1,3 @@
+DROP DATABASE IF EXITS test_posts;
+
+CREATE DATABASE test_posts;
