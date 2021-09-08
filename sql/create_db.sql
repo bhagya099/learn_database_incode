@@ -1,0 +1,3 @@
+DROP DATABASE IF EXITS incode5_fk;
+
+CREATE DATABASE incode5_fk;
