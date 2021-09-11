@@ -1,27 +1,41 @@
-const express = require("express");
+require('dotenv').config();
+
+const express = require('express');
+const morgan = require('morgan');
+const session = require('express-session');
+
 const app = express();
 const PORT = process.env.PORT || 3008;
+
+const signUp = require('./route/signup');
+const logIn = require('./route/login');
+const homeRouter = require('./route/home');
+const postRouter = require('./route/post');
+const session_config = require('./session_config');
+
+const { redirectToLogin } = require('./middleware');
 
 // BODY PARESER
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(morgan('dev'));
+
 // view
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 
-app.get("/", (req, res) => {
-    res.render("pages/index", {
-        name: "Bhagyashree",
-    });
-});
+// session
+app.use(session(session_config));
 
-app.get("/posts", (req, res) => {
-    res.render("pages/post");
-});
+// route middleware
+app.use('/signup', signUp);
 
-app.get("/posts/new", (req, res) => {
-    res.render("pages/new-post");
-});
+app.use('/login', logIn);
+
+// app.use('/', homeRouter);
+
+// app.use('/posts', postRouter);
+
 app.listen(PORT, () => {
     console.log(`Your Port is : http://localhost:${PORT}`);
 });

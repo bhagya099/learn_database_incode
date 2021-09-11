@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "dev": "nodemon -r dotenv/config index.js",
         "create-db": "psql -U postgres -f sql/create_db.sql",
         "create-table": "psql -U postgres -d incode5_fk -f sql/create-table.sql",
         "seed-table": "psql -U postgres -d incode5_fk -f sql/seed.sql",
@@ -13,8 +14,11 @@
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.1",
+        "dotenv": "^10.0.0",
         "ejs": "^3.1.6",
         "express": "^4.17.1",
+        "express-session": "^1.17.2",
+        "morgan": "^1.10.0",
         "pg-promise": "^10.11.0"
     },
     "devDependencies": {
