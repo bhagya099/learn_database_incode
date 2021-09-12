@@ -8,3 +8,5 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
     res.render('../views/pages/new-post');
 });
+
+module.exports = router;

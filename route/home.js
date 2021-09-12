@@ -6,3 +6,5 @@ router.get('/', (req, res) => {
         name: 'Bhagyashree',
     });
 });
+
+module.exports = router;

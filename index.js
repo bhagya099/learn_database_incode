@@ -7,13 +7,15 @@ const session = require('express-session');
 const app = express();
 const PORT = process.env.PORT || 3008;
 
-const signUp = require('./route/signup');
-const logIn = require('./route/login');
 const homeRouter = require('./route/home');
 const postRouter = require('./route/post');
+const signUp = require('./route/signup');
+const logIn = require('./route/login');
+const logoutRouter = require('./route/logout');
+
 const session_config = require('./session_config');
 
-const { redirectToLogin } = require('./middleware');
+const { redirectToLogin, redirectToHome } = require('./middleware');
 
 // BODY PARESER
 app.use(express.urlencoded({ extended: false }));
@@ -28,12 +30,13 @@ app.set('view engine', 'ejs');
 app.use(session(session_config));
 
 // route middleware
-app.use('/signup', signUp);
+app.use('/signup', redirectToHome, signUp);
 
-app.use('/login', logIn);
+app.use('/login', redirectToHome, logIn);
 
-// app.use('/', homeRouter);
+app.use('/', redirectToLogin, homeRouter);
 
+app.use('/logout', redirectToLogin, logoutRouter);
 // app.use('/posts', postRouter);
 
 app.listen(PORT, () => {

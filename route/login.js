@@ -32,8 +32,8 @@ router.post('/', (req, res) => {
                             // TODO: edit session and redirect with success message
                             // req.session.userId = user.id;
                             // console.log(req.session.userId);
-                            res.send('Succefully Logged in');
-                            // res.redirect('/');
+                            // res.send('Succefully Logged in');
+                            res.redirect('/');
                         }
                     })
                     .catch((error) => {
