@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3008;
 
 const homeRouter = require('./route/home');
-const postRouter = require('./route/post');
+const scheduleRouter = require('./route/schedules');
 const signUp = require('./route/signup');
 const logIn = require('./route/login');
 const logoutRouter = require('./route/logout');
@@ -30,18 +30,18 @@ app.set('view engine', 'ejs');
 // session
 // app.use(express.cookieParser('keyboard cat'));
 app.use(session(session_config));
-app.use(flash());
+// app.use(flash());
 
 // route middleware
-app.use('/signup', redirectToHome, signUp);
+app.use('/signup', signUp);
 
-app.use('/login', redirectToHome, logIn);
+app.use('/login', logIn);
 
-app.use('/', redirectToLogin, homeRouter);
+app.use('/', homeRouter);
 
-app.use('/logout', redirectToLogin, logoutRouter);
+app.use('/logout', logoutRouter);
 // app.use('/posts', postRouter);
-
+app.use('/schedules', scheduleRouter);
 app.listen(PORT, () => {
     console.log(`Your Port is : http://localhost:${PORT}`);
 });

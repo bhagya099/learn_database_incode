@@ -4,11 +4,11 @@ const db = require('../databse');
 const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
-    req.flash('info', 'Welcome');
-    res.render('pages/login', {
-      title: 'Login page',
-      // message: req.query.message,
-    });
+  // req.flash('info', 'Welcome');
+  res.render('pages/login', {
+    title: 'Login page',
+    // message: req.query.message,
+  });
 });
 
 router.post('/', (req, res) => {
