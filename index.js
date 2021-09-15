@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const session = require('express-session');
+const flash = require('express-flash');
 
 const app = express();
 const PORT = process.env.PORT || 3008;
@@ -27,7 +28,9 @@ app.use(morgan('dev'));
 app.set('view engine', 'ejs');
 
 // session
+// app.use(express.cookieParser('keyboard cat'));
 app.use(session(session_config));
+app.use(flash());
 
 // route middleware
 app.use('/signup', redirectToHome, signUp);

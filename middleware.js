@@ -14,3 +14,8 @@ module.exports.redirectToHome = (req, res, next) => {
         next();
     }
 };
+
+const logger = (req, res, next) => {
+  console.log('1');
+  next();
+};
